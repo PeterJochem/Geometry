@@ -3,7 +3,6 @@ project(Geometry)
 
 #set(CMAKE_CXX_STANDARD 11)
 
-
 include_directories(include)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
 find_package(GTest REQUIRED)
