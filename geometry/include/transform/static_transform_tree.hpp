@@ -4,7 +4,6 @@
 #include <algorithm>
 #include "transform/transform.hpp"
 #include "transform/transform_tree.hpp"
-#include "transform/node.hpp"
 #include "transform/frame.hpp"
 
 

@@ -6,8 +6,6 @@
 #include <Eigen/Dense>
 #include <chrono>
 #include <unistd.h>
-#include <geometry_msgs/TransformStamped.h>
-#include "geometry_msgs/Transform.h"
 #include "transform/utilities.hpp"
 #include "transform/transform.hpp"
 #include "transform/frame.hpp"
@@ -42,8 +40,6 @@ namespace geometry {
             Eigen::Matrix4d matrix;
             static Transform multiply(std::vector<Transform>); 
             Transform inverse();
-            geometry_msgs::Transform to_ros();
-            geometry_msgs::TransformStamped stamp_and_to_ros();
         private:
             float roll, pitch, yaw;
             float x, y, z;

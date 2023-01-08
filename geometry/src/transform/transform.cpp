@@ -137,48 +137,6 @@ namespace geometry {
         return Transform(parent, child, result);
     }
 
-    geometry_msgs::Transform Transform::to_ros() {
-
-        geometry_msgs::Transform ros_transform;
-
-        geometry_msgs::Vector3 translation;
-        translation.x = x;
-        translation.y = y;
-        translation.z = z;
-        
-        
-        geometry_msgs::Quaternion q;
-        q.x = 0.;
-        q.y = 0;
-        q.z = 0;
-        q.w = 1.0;
-        // set x, y, z, w FIX ME!
-
-        ros_transform.translation = translation;
-        ros_transform.rotation = q;
-
-        return ros_transform;
-    }
-
-    geometry_msgs::TransformStamped Transform::stamp_and_to_ros() {
-
-        geometry_msgs::TransformStamped ros_transform;
-
-        std_msgs::Header header;
-        header.frame_id = get_parent().get_name(); // What should this be? The world static frame name?
-        using namespace std::chrono;
-        header.stamp.sec = duration_cast<seconds>(system_clock::now().time_since_epoch()).count();
-        //std::time(0); // The current Unix time.
-        
-        
-        ros_transform.transform = to_ros();
-        ros_transform.header = header;
-        ros_transform.child_frame_id = get_child().get_name();; // What should this be?
-
-        return ros_transform;
-
-    }
-
     Transform operator*(const Transform &lhs, const Transform &rhs) {
         return Transform(lhs.get_parent(), rhs.get_child(), lhs.matrix * rhs.matrix);
     }

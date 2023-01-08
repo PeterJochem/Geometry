@@ -1,5 +1,5 @@
-#ifndef TRANSFORM_TREE_ROS_WRAPPER
-#define TRANSFORM_TREE_ROS_WRAPPER
+#ifndef TRANSFORM_TREE_VISUALIZER
+#define TRANSFORM_TREE_VISUALiZER
 #include <vector>
 #include "transform/transform_tree.hpp"
 
