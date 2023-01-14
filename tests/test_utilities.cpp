@@ -1,5 +1,6 @@
 #include "transform/utilities.hpp"
 #include <gtest/gtest.h>
+#include <ginac/ginac.h>
 
 namespace geometry {
 
@@ -57,7 +58,4 @@ TEST(Utilities, test_euler_angles_to_rotation_matrix4) {
     ASSERT_TRUE(nearly_equal(matrix, expected));
     ASSERT_TRUE(nearly_equal(matrix.determinant(), 1.));
 }
-
-
-
 }

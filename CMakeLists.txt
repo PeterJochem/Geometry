@@ -5,9 +5,12 @@ project(Geometry)
 
 include_directories(include)
 find_package(Eigen3 3.3 REQUIRED NO_MODULE)
+#find_package(ginac)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(${EIGEN3_INCLUDE_DIR})
+
+include_directories(/usr/include/ginac/)
 
 
 add_library(geometry
@@ -18,9 +21,10 @@ add_library(geometry
   src/primitives/vector.cpp
   src/primitives/axis.cpp
   src/transform/frame.cpp
+  src/transform/symbolic_transform.cpp
   )
 
-target_link_libraries(geometry PUBLIC Eigen3::Eigen)
+target_link_libraries(geometry PUBLIC Eigen3::Eigen /usr/lib/libginac.so)
 
 set(BUILD_TESTS True)
 if (BUILD_TESTS)

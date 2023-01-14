@@ -19,6 +19,7 @@ namespace geometry {
             Transform(Frame parent, Frame child, float x, float y, float z, float roll, float pitch, float yaw);
             Transform(Frame parent, Frame child, Vector3D position, Vector3D euler_angles);
             Transform(Frame parent, Frame child, Eigen::Matrix4d matrix);
+            Transform(std::string parent, std::string child, float x, float y, float z, float roll, float pitch, float yaw);
             Transform();
             friend Transform operator*(const Transform &lhs, const Transform &rhs);
             friend bool operator==(const Transform &lhs, const Transform &rhs);

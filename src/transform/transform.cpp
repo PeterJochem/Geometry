@@ -8,6 +8,14 @@ namespace geometry {
         matrix = constructMatrix(x, y, z, roll, pitch, yaw);
     }
 
+    Transform::Transform(std::string parent, std::string child, float x, float y, float z, float roll, float pitch, float yaw) {
+
+        this->parent = Frame(parent); 
+        this->child = Frame(child);
+
+        matrix = constructMatrix(x, y, z, roll, pitch, yaw);
+    }
+
     Transform::Transform(Frame parent, Frame child, Eigen::Matrix4d matrix): parent(parent), child(child), matrix(matrix) {
         
         std::tie(x, y, z) = utilities::parse_position(matrix);
