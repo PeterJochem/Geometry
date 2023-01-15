@@ -22,6 +22,7 @@ add_library(geometry
   src/primitives/axis.cpp
   src/transform/frame.cpp
   src/transform/symbolic_transform.cpp
+  src/conversions/conversions.cpp
   )
 
 target_link_libraries(geometry PUBLIC Eigen3::Eigen /usr/lib/libginac.so)

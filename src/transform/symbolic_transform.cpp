@@ -4,6 +4,7 @@
 
 namespace geometry {
 
+    /*
     // Move this to the local conversions
     Transform SymbolicTransform::convert_to_transform(Frame parent, Frame child, GiNaC::ex matrix) {
 
@@ -18,15 +19,13 @@ namespace geometry {
         }
 
         // convert to euler angles
-        //rotation_matrix_to_euler_angles
         Eigen::Matrix3d rotation_matrix = Eigen::Matrix3d::Zero(3, 3);
 
         for (int i = 0; i < 3; i++) {
             for (int j = 0; j < 3; j++) {
 
-                if (GiNaC::is_a<GiNaC::numeric>(  matrix[i, j] )) {
-                    double d = GiNaC::ex_to<GiNaC::numeric>(matrix[i, j]).to_double();
-                    rotation_matrix(i, j) = d;
+                if (GiNaC::is_a<GiNaC::numeric>(matrix[i, j])) {
+                    rotation_matrix(i, j) = GiNaC::ex_to<GiNaC::numeric>(matrix[i, j]).to_double();
                 } 
                 else {
                     throw std::runtime_error("The GiNac expression is not numeric.");
@@ -38,23 +37,21 @@ namespace geometry {
 
         bool x_is_numeric, y_is_numeric, z_is_numeric;
 
-        x_is_numeric = GiNaC::is_a<GiNaC::numeric>(matrix[0, 3]);
-        y_is_numeric = GiNaC::is_a<GiNaC::numeric>(matrix[1, 3]);
-        z_is_numeric = GiNaC::is_a<GiNaC::numeric>(matrix[2, 3]);
+        x_is_numeric = GiNaC::is_a<GiNaC::numeric>(matrix.let_op(3));
+        y_is_numeric = GiNaC::is_a<GiNaC::numeric>(matrix.let_op(7));
+        z_is_numeric = GiNaC::is_a<GiNaC::numeric>(matrix.let_op(11));
 
         if (!(x_is_numeric && y_is_numeric && z_is_numeric)) {
             throw std::runtime_error("Part of the GiNaC expression is not numeric.");
         }
 
-        float x, y, z;
-        x = GiNaC::ex_to<GiNaC::numeric>(matrix[0, 3]).to_double();
-        y = GiNaC::ex_to<GiNaC::numeric>(matrix[1, 3]).to_double();
-        z = GiNaC::ex_to<GiNaC::numeric>(matrix[2, 3]).to_double();
+        float x = GiNaC::ex_to<GiNaC::numeric>(matrix.let_op(3)).to_double();
+        float y = GiNaC::ex_to<GiNaC::numeric>(matrix.let_op(7)).to_double();
+        float z = GiNaC::ex_to<GiNaC::numeric>(matrix.let_op(11)).to_double();
 
-        return geometry::Transform(parent, child, 0., 0., 0., 0., 0., 0.);
+        return geometry::Transform(parent, child, x, y, z, roll, pitch, yaw);
     }
-
-
+    */
 
     SymbolicTransform::SymbolicTransform(float x, float y, float z, GiNaC::symbol roll, float pitch, float yaw) {
 
