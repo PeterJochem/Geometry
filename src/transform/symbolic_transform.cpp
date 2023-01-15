@@ -53,39 +53,38 @@ namespace geometry {
     }
     */
 
-    SymbolicTransform::SymbolicTransform(float x, float y, float z, GiNaC::symbol roll, float pitch, float yaw) {
+    template <class X, class Y, class Z, class Roll, class Pitch, class Yaw>
+    SymbolicTransform::SymbolicTransform(X x, Y y, Z z, Roll roll, Pitch pitch, Yaw yaw) {
 
            using namespace GiNaC;
 
-           this->matrix = {{1.0, 0.0, 0.0, x}, 
-                            {0., cos(roll), -sin(roll), y},
-                            {0., sin(roll), cos(roll), z},
-                            {0., 0., 0., 1.}
-                          }; 
+            GiNaC::matrix roll_matrix = {{1.0, 0.0, 0.0, 0.}, 
+                                {0., cos(roll), -sin(roll), 0.},
+                                {0., sin(roll), cos(roll), 0.},
+                                {0., 0., 0., 1.}
+                                }; 
+
+            
+            GiNaC::matrix pitch_matrix = {{cos(pitch), 0.0, sin(pitch), 0.}, 
+                                {0., 1., 0., 0.},
+                                {-sin(pitch), 0., cos(pitch), 0.},
+                                {0., 0., 0., 1.}
+                                };
+
+
+            GiNaC::matrix yaw_matrix = {{cos(yaw), -sin(yaw), 0., x}, 
+                              {sin(yaw), cos(yaw), 0., y},
+                              {0., 0., 1., z},
+                              {0., 0., 0., 1.}
+                              };
+            
+            this->matrix = roll_matrix.mul(pitch_matrix.mul(yaw_matrix));
     }
 
+    template SymbolicTransform::SymbolicTransform(double x, double y, double z, GiNaC::symbol roll, double pitch, double yaw);
+    template SymbolicTransform::SymbolicTransform(double x, double y, double z, double roll, GiNaC::symbol pitch, double yaw);
+    template SymbolicTransform::SymbolicTransform(double x, double y, double z, double roll, double pitch, GiNaC::symbol yaw);
 
-    SymbolicTransform::SymbolicTransform(float x, float y, float z, float roll, GiNaC::symbol pitch, float yaw) {
-
-        using namespace GiNaC;
-
-        this->matrix = {{cos(pitch), 0.0, sin(pitch), x}, 
-                        {0., 1., 0., y},
-                        {-sin(pitch), 0., cos(pitch), z},
-                        {0., 0., 0., 1.}
-                        };
-    }
-
-    SymbolicTransform::SymbolicTransform(float x, float y, float z, float roll, float pitch, GiNaC::symbol yaw) {
-        
-        using namespace GiNaC;
-
-        this->matrix = {{cos(yaw), -sin(yaw), 0., x}, 
-                        {sin(yaw), cos(yaw), 0., y},
-                        {0., 0., 1., z},
-                        {0., 0., 0., 1.}
-                        };
-    }
 
     SymbolicTransform::SymbolicTransform(GiNaC::matrix matrix) {
         this->matrix = matrix;

@@ -10,13 +10,16 @@ namespace geometry {
     class SymbolicTransform {
         
         public:
-            SymbolicTransform(float x, float y, float z, GiNaC::symbol roll, float pitch, float yaw);
-            SymbolicTransform(float x, float y, float z, float roll, GiNaC::symbol pitch, float yaw);
-            SymbolicTransform(float x, float y, float z, float roll, float pitch, GiNaC::symbol yaw);
+            
+            template <class X, class Y, class Z, class Roll, class Pitch, class Yaw>
+            SymbolicTransform(X x, Y y, Z z, Roll roll, Pitch pitch, Yaw yaw);
             SymbolicTransform(GiNaC::matrix matrix);
+            
             friend SymbolicTransform operator*(const SymbolicTransform &lhs, const SymbolicTransform &rhs);
+            
             GiNaC::matrix matrix;
         private:
+
     };
 }
 #endif

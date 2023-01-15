@@ -78,9 +78,9 @@ TEST(SymbolicTransform1, test_two_equal_and_opposite_yaw_transforms_undo_each_ot
 
 TEST(SymbolicTransform1, identity_times_transform_should_equal_transform1) {
 
-    float x = 4.;
-    float y = 0.;
-    float z = 0.;
+    double x = 4.;
+    double y = 0.;
+    double z = 0.;
 
     GiNaC::symbol yaw1("yaw1");
     geometry::SymbolicTransform transform1 = geometry::SymbolicTransform(0., 0., 0., 0., 0., yaw1);
@@ -90,7 +90,7 @@ TEST(SymbolicTransform1, identity_times_transform_should_equal_transform1) {
 
     auto result_symbolic_transform = transform1 * transform2;
         
-    float radians = M_PI/2;
+    double radians = M_PI/2;
     GiNaC::exmap map = {{yaw1, 0.}, {yaw2, 0.}};
     auto result = GiNaC::evalf(result_symbolic_transform.matrix.subs(map));
 
@@ -103,9 +103,9 @@ TEST(SymbolicTransform1, identity_times_transform_should_equal_transform1) {
 
 TEST(SymbolicTransform1, identity_times_transform_should_equal_transform2) {
 
-    float x = -4.;
-    float y = -5.;
-    float z = 14.;
+    double x = -4.;
+    double y = -5.;
+    double z = 14.;
 
     GiNaC::symbol roll1("roll1");
     geometry::SymbolicTransform transform1 = geometry::SymbolicTransform(0., 0., 0., roll1, 0., 0.);
@@ -115,7 +115,7 @@ TEST(SymbolicTransform1, identity_times_transform_should_equal_transform2) {
 
     auto result_symbolic_transform = transform1 * transform2;
     
-    float radians = M_PI/2;
+    double radians = M_PI/2;
     GiNaC::exmap map = {{roll1, 0.}, {roll2, 0.}};
     auto result = GiNaC::evalf(result_symbolic_transform.matrix.subs(map));
 
@@ -128,9 +128,9 @@ TEST(SymbolicTransform1, identity_times_transform_should_equal_transform2) {
 
 TEST(SymbolicTransform1, identity_times_transform_should_equal_transform3) {
 
-    float x = 4.;
-    float y = 5.;
-    float z = 9.;
+    double x = 4.;
+    double y = 5.;
+    double z = 9.;
 
     GiNaC::symbol pitch1("pitch1");
     geometry::SymbolicTransform transform1 = geometry::SymbolicTransform(0., 0., 0., 0., pitch1, 0.);
@@ -140,7 +140,7 @@ TEST(SymbolicTransform1, identity_times_transform_should_equal_transform3) {
 
     auto result_symbolic_transform = transform1 * transform2;
     
-    float radians = M_PI/2;
+    double radians = M_PI/2;
     GiNaC::exmap map = {{pitch1, 0.}, {pitch2, 0.}};
     auto result = GiNaC::evalf(result_symbolic_transform.matrix.subs(map));
 
@@ -153,19 +153,19 @@ TEST(SymbolicTransform1, identity_times_transform_should_equal_transform3) {
 
 TEST(SymbolicTransform1, test_rotating_around_unit_circle) {
 
-    float x = 4.;
-    float y = 0.;
-    float z = 0.;
+    double x = 4.;
+    double y = 0.;
+    double z = 0.;
 
     GiNaC::symbol yaw1("yaw1");
     geometry::SymbolicTransform transform = geometry::SymbolicTransform(x, 0., 0., 0., 0., yaw1);
 
     GiNaC::symbol yaw2("yaw2");
-    geometry::SymbolicTransform rotation_operator = geometry::SymbolicTransform(0., 0, 0., 0., 0., yaw2);
+    geometry::SymbolicTransform rotation_operator = geometry::SymbolicTransform(0., 0., 0., 0., 0., yaw2);
 
     auto result_symbolic_transform = rotation_operator * transform;
         
-    float radians = M_PI/2;
+    double radians = M_PI/2;
     GiNaC::exmap map = {{yaw1, 0.}, {yaw2, radians}};
     auto result = GiNaC::evalf(result_symbolic_transform.matrix.subs(map));
 
@@ -178,9 +178,9 @@ TEST(SymbolicTransform1, test_rotating_around_unit_circle) {
 
 TEST(SymbolicTransform1, test_rotating_around_unit_circle2) {
 
-    float x = 4.;
-    float y = 0.;
-    float z = 2.;
+    double x = 4.;
+    double y = 0.;
+    double z = 2.;
 
     GiNaC::symbol yaw1("yaw1");
     geometry::SymbolicTransform transform = geometry::SymbolicTransform(x, y, z, 0., 0., yaw1);
@@ -190,7 +190,7 @@ TEST(SymbolicTransform1, test_rotating_around_unit_circle2) {
 
     auto result_symbolic_transform = rotation_operator * transform;
         
-    float radians = M_PI/2;
+    double radians = M_PI/2;
     GiNaC::exmap map = {{yaw1, 0.}, {yaw2, radians}};
     auto result = GiNaC::evalf(result_symbolic_transform.matrix.subs(map));
 
@@ -203,9 +203,9 @@ TEST(SymbolicTransform1, test_rotating_around_unit_circle2) {
 
 TEST(SymbolicTransform1, transform_times_identity_should_be_identity) {
 
-    float x = 4.;
-    float y = 15.;
-    float z = -100.;
+    double x = 4.;
+    double y = 15.;
+    double z = -100.;
 
     GiNaC::symbol pitch1("pitch1");
     geometry::SymbolicTransform transform = geometry::SymbolicTransform(x, y, z, 0., pitch1, 0.);
@@ -216,7 +216,7 @@ TEST(SymbolicTransform1, transform_times_identity_should_be_identity) {
 
     auto result_symbolic_transform = transform * inverse;
         
-    float radians = 0;
+    double radians = 0;
     GiNaC::exmap map = {{pitch1, radians}, {pitch2, -radians}};
     auto result = GiNaC::evalf(result_symbolic_transform.matrix.subs(map));
 

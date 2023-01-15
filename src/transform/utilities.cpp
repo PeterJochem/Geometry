@@ -46,9 +46,12 @@ namespace utilities {
     }
 
     Eigen::Matrix3d euler_angles_to_rotation_matrix(float roll, float pitch, float yaw) {
-        
+        /* http://msl.cs.uiuc.edu/planning/node102.html - why is mine below the opposite order?
+           https://en.wikipedia.org/wiki/Euler_angles - lists the opposite order s the above.
+        */
+
         return roll_matrix(roll) * pitch_matrix(pitch) * yaw_matrix(yaw);
-        //return yaw_matrix(yaw) * pitch_matrix(pitch) * roll_matrix(roll);
+       // return yaw_matrix(yaw) * pitch_matrix(pitch) * roll_matrix(roll);
     }
 
 
