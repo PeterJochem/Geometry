@@ -23,20 +23,32 @@ namespace geometry {
                                 };
 
 
-            GiNaC::matrix yaw_matrix = {{cos(yaw), -sin(yaw), 0., x}, 
-                              {sin(yaw), cos(yaw), 0., y},
+            GiNaC::matrix yaw_matrix = {{cos(yaw), -sin(yaw), 0., 0.}, 
+                              {sin(yaw), cos(yaw), 0., 0.},
+                              {0., 0., 1., 0.},
+                              {0., 0., 0., 1.}
+                              };
+
+            GiNaC::matrix translation = {{1., 0., 0., x}, 
+                              {0., 1., 0., y},
                               {0., 0., 1., z},
                               {0., 0., 0., 1.}
                               };
-            
-            this->matrix = roll_matrix.mul(pitch_matrix.mul(yaw_matrix));
+
+
+            this->matrix = translation.mul(roll_matrix.mul(pitch_matrix.mul(yaw_matrix)));
+            //this->matrix = (roll_matrix.mul(pitch_matrix.mul(yaw_matrix))).mul(translation);
     }
 
     template SymbolicTransform::SymbolicTransform(double x, double y, double z, GiNaC::symbol roll, double pitch, double yaw);
+    template SymbolicTransform::SymbolicTransform(double x, double y, double z, double roll, GiNaC::ex pitch, double yaw);
     template SymbolicTransform::SymbolicTransform(double x, double y, double z, double roll, GiNaC::symbol pitch, double yaw);
     template SymbolicTransform::SymbolicTransform(double x, double y, double z, double roll, double pitch, GiNaC::symbol yaw);
+    template SymbolicTransform::SymbolicTransform(double x, double y, double z, double roll, double pitch, GiNaC::ex yaw);
     template SymbolicTransform::SymbolicTransform(double x, double y, double z, double roll, double pitch, double yaw);
 
+    template SymbolicTransform::SymbolicTransform(double x, double y, double z, GiNaC::ex roll, double pitch, double yaw);
+    //GiNaC::ex
 
 
     SymbolicTransform::SymbolicTransform(GiNaC::matrix matrix) {
