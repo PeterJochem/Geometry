@@ -16,36 +16,36 @@ namespace geometry {
 
     class Transform {
         public:
-            Transform(Frame parent, Frame child, float x, float y, float z, float roll, float pitch, float yaw);
+            Transform(Frame parent, Frame child, double x, double y, double z, double roll, double pitch, double yaw);
             Transform(Frame parent, Frame child, Vector3D position, Vector3D euler_angles);
             Transform(Frame parent, Frame child, Eigen::Matrix4d matrix);
-            Transform(std::string parent, std::string child, float x, float y, float z, float roll, float pitch, float yaw);
+            Transform(std::string parent, std::string child, double x, double y, double z, double roll, double pitch, double yaw);
             Transform();
             friend Transform operator*(const Transform &lhs, const Transform &rhs);
             friend bool operator==(const Transform &lhs, const Transform &rhs);
             friend bool operator!=(const Transform &lhs, const Transform &rhs);
             Vector3D getPosition() const;
             Vector3D getEulerAngles() const;
-            float get_x();
-            float get_y();
-            float get_z();
-            float get_roll();
-            float get_pitch();
-            float get_yaw();
+            double get_x();
+            double get_y();
+            double get_z();
+            double get_roll();
+            double get_pitch();
+            double get_yaw();
             Frame get_parent() const;
             Frame get_child() const;
-            void set_roll(float);
-            void set_pitch(float);
-            void set_yaw(float);
+            void set_roll(double);
+            void set_pitch(double);
+            void set_yaw(double);
             static Transform identity(Frame parent, Frame child);
             Eigen::Matrix4d matrix;
             static Transform multiply(std::vector<Transform>); 
             Transform inverse();
         private:
-            float roll, pitch, yaw;
-            float x, y, z;
+            double roll, pitch, yaw;
+            double x, y, z;
             Frame parent, child;
-            Eigen::Matrix4d constructMatrix(float x, float y, float z, float roll, float pitch, float yaw);
+            Eigen::Matrix4d constructMatrix(double x, double y, double z, double roll, double pitch, double yaw);
     };
 
     // Make this a friend?

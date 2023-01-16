@@ -2,7 +2,6 @@ find_package(GTest REQUIRED)
 
 set(test_sources 
     test_transform.cpp 
-    #test_transform_tree.cpp
     test_utilities.cpp
     test_static_transform_tree.cpp
     test_symbolic_transform.cpp

@@ -2,13 +2,14 @@
 
 namespace geometry {
 
-    Transform::Transform(Frame parent, Frame child, float x, float y, float z, float roll, float pitch, float yaw) : 
+    Transform::Transform(Frame parent, Frame child, double x, double y, double z, double roll, double pitch, double yaw) : 
     parent(parent), child(child), x(x), y(y), z(z), roll(roll), pitch(pitch), yaw(yaw) {
         
         matrix = constructMatrix(x, y, z, roll, pitch, yaw);
     }
 
-    Transform::Transform(std::string parent, std::string child, float x, float y, float z, float roll, float pitch, float yaw) {
+    Transform::Transform(std::string parent, std::string child, double x, double y, double z, double roll, double pitch, double yaw): 
+    x(x), y(y), z(z), roll(roll), pitch(pitch), yaw(yaw) {
 
         this->parent = Frame(parent); 
         this->child = Frame(child);
@@ -40,49 +41,49 @@ namespace geometry {
         
     }
 
-    float Transform::get_x() {
+    double Transform::get_x() {
         return x;
     }
 
-    float Transform::get_y() {
+    double Transform::get_y() {
         return y;
     }
 
-    float Transform::get_z() {
+    double Transform::get_z() {
         return z;
     }
 
-    float Transform::get_roll() {
+    double Transform::get_roll() {
         return roll;
     } 
     
-    float Transform::get_pitch() {
+    double Transform::get_pitch() {
         return pitch;
     }
     
-    float Transform::get_yaw() {
+    double Transform::get_yaw() {
         return yaw;
     }
 
-    void Transform::set_roll(float roll) {
+    void Transform::set_roll(double roll) {
 
         this->roll = roll;
         this->matrix = constructMatrix(x, y, z, roll, pitch, yaw);
     }
     
-    void Transform::set_pitch(float pitch) {
+    void Transform::set_pitch(double pitch) {
 
         this->pitch = pitch;
         this->matrix = constructMatrix(x, y, z, roll, pitch, yaw);
     }
     
-    void Transform::set_yaw(float yaw) {
+    void Transform::set_yaw(double yaw) {
 
         this->yaw = yaw;
         this->matrix = constructMatrix(x, y, z, roll, pitch, yaw);
     }
 
-    Eigen::Matrix4d Transform::constructMatrix(float x, float y, float z, float roll, float pitch, float yaw) {
+    Eigen::Matrix4d Transform::constructMatrix(double x, double y, double z, double roll, double pitch, double yaw) {
         
         Eigen::Matrix4d matrix = Eigen::Matrix4d::Zero(4, 4);
 
