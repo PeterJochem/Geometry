@@ -77,12 +77,46 @@ namespace utilities {
         }
         else {
             roll = atan2(matrix(1,0), matrix(1,1));
-            pitch = M_PI;
+            pitch = M_PI/2;
             yaw = 0.;
         }
 
         return std::make_tuple(roll, pitch, yaw);
     }
+
+    
+    std::tuple<float, float, float> rotation_matrix_to_euler_angles2(const Eigen::Matrix3d &matrix) {
+        /* Adapted from online
+           //https://danceswithcode.net/engineeringnotes/rotations_in_3d/rotations_in_3d_part1.html.
+        */
+        using namespace std;
+
+        float roll, pitch, yaw;
+
+        /*
+        if (matrix(0,2) < 1) {
+            
+            roll = atan2(-matrix(1,2), matrix(2,2));
+            pitch = asin(matrix(0,2));
+
+
+        }
+        else if () {
+
+        }
+        else {
+
+        }
+
+        roll = atan2(-matrix(1,2), matrix(2,2));
+        pitch = asin(matrix(0,2));
+        yaw = atan2(-matrix(0,1), matrix(0,0));
+        */
+
+        return std::make_tuple(roll, pitch, yaw);
+    }
+
+
 
     std::tuple<float, float, float> parse_position(const Eigen::Matrix4d &matrix) {
         
