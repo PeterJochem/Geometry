@@ -9,22 +9,26 @@ namespace geometry {
 
            using namespace GiNaC;
 
+            auto cos_roll = cos(roll);
+            auto sin_roll = sin(roll);
             GiNaC::matrix roll_matrix = {{1.0, 0.0, 0.0, 0.}, 
-                                {0., cos(roll), -sin(roll), 0.},
-                                {0., sin(roll), cos(roll), 0.},
+                                {0., cos_roll, -sin_roll, 0.},
+                                {0., sin_roll, cos_roll, 0.},
                                 {0., 0., 0., 1.}
                                 }; 
 
-            
-            GiNaC::matrix pitch_matrix = {{cos(pitch), 0.0, sin(pitch), 0.}, 
+            auto cos_pitch = cos(pitch);
+            auto sin_pitch = sin(pitch);
+            GiNaC::matrix pitch_matrix = {{cos_pitch, 0.0, sin_pitch, 0.}, 
                                 {0., 1., 0., 0.},
-                                {-sin(pitch), 0., cos(pitch), 0.},
+                                {-sin_pitch, 0., cos_pitch, 0.},
                                 {0., 0., 0., 1.}
                                 };
 
-
-            GiNaC::matrix yaw_matrix = {{cos(yaw), -sin(yaw), 0., 0.}, 
-                              {sin(yaw), cos(yaw), 0., 0.},
+            auto cos_yaw = cos(yaw);
+            auto sin_yaw = sin(yaw);
+            GiNaC::matrix yaw_matrix = {{cos_yaw, -sin_yaw, 0., 0.}, 
+                              {sin_yaw, cos_yaw, 0., 0.},
                               {0., 0., 1., 0.},
                               {0., 0., 0., 1.}
                               };

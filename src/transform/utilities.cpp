@@ -128,4 +128,32 @@ namespace utilities {
         }
         return true;
     }
+
+    std::tuple<float, float, float, float, float, float> to_pose_vector(Eigen::Matrix4d& matrix) {
+
+        double x = matrix(0, 3);
+        double y = matrix(1, 3);
+        double z = matrix(2, 3);
+        auto[roll, pitch, yaw] = parse_euler_angles(matrix);
+
+        return std::make_tuple(x, y, z, roll, pitch, yaw);        
+    }
+
+    float sum_square_error(Eigen::MatrixXd matrix1, Eigen::MatrixXd matrix2) {
+
+        if (matrix1.rows() != matrix2.rows() || matrix1.cols() != matrix2.cols()) {
+            throw std::runtime_error("The matrices have different dimensions");
+        }
+
+        float sse = 0.;
+        for (int i = 0; i < matrix1.rows(); i++) {
+            for (int j = 0; j < matrix1.cols(); j++) {
+                
+                //sse += std::pow(matrix1(0, 3) - matrix2(0, 3), 2);
+                sse += std::pow(matrix1(i, j) - matrix2(i, j), 2);
+            }
+        }
+
+        return std::sqrt(sse);
+    }
 }

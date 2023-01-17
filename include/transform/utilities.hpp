@@ -17,8 +17,9 @@ namespace utilities {
     bool nearly_equal(float x, float y, float epsilon=0.0005);
     bool nearly_equal(const Eigen::Matrix3d &actual, const Eigen::Matrix3d &expected);    
 
+    std::tuple<float, float, float, float, float, float> to_pose_vector(Eigen::Matrix4d& matrix); 
 
-    // Make a utiity for loading Eigen matrices from a vector
+    float sum_square_error(Eigen::MatrixXd matrix1, Eigen::MatrixXd matrix2);
 
 }
 
