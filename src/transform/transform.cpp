@@ -35,6 +35,8 @@ namespace geometry {
         roll = euler_angles1[0];
         pitch = euler_angles1[1];
         yaw = euler_angles1[2];
+
+        matrix = constructMatrix(x, y, z, roll, pitch, yaw);
     }
 
     Transform::Transform() {

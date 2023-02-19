@@ -23,6 +23,8 @@ add_library(geometry
   src/transform/frame.cpp
   src/transform/symbolic_transform.cpp
   src/conversions/conversions.cpp
+  src/primitives/point.cpp
+  src/meshes/mesh.cpp
   )
 
 target_include_directories(geometry PUBLIC ${EIGEN3_INCLUDE_DIR} ./include)

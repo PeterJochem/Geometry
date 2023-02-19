@@ -48,5 +48,29 @@ namespace geometry {
 
                 return geometry::Transform(parent, child, x, y, z, roll, pitch, yaw);
         }
+
+
+        std::tuple<float, float, float, float> convert_to_quaternion(float roll, float pitch, float yaw) { 
+        /*  Adapted from the link below:
+            https://automaticaddison.com/how-to-convert-euler-angles-to-quaternions-using-python/
+        
+            qx = np.sin(roll/2) * np.cos(pitch/2) * np.cos(yaw/2) - np.cos(roll/2) * np.sin(pitch/2) * np.sin(yaw/2)
+            qy = np.cos(roll/2) * np.sin(pitch/2) * np.cos(yaw/2) + np.sin(roll/2) * np.cos(pitch/2) * np.sin(yaw/2)
+            qz = np.cos(roll/2) * np.cos(pitch/2) * np.sin(yaw/2) - np.sin(roll/2) * np.sin(pitch/2) * np.cos(yaw/2)
+            qw = np.cos(roll/2) * np.cos(pitch/2) * np.cos(yaw/2) + np.sin(roll/2) * np.sin(pitch/2) * np.sin(yaw/2)
+        */
+
+            using namespace std;
+
+            float x = (sin(roll/2) * cos(pitch/2) * cos(yaw/2)) - (cos(roll/2) * sin(pitch/2) * sin(yaw/2));
+            
+            float y = (cos(roll/2) * sin(pitch/2) * cos(yaw/2)) + (sin(roll/2) * cos(pitch/2) * sin(yaw/2));
+
+            float z = (cos(roll/2) * cos(pitch/2) * sin(yaw/2)) - (sin(roll/2) * sin(pitch/2) * cos(yaw/2));
+
+            float w = (cos(roll/2) * cos(pitch/2) * cos(yaw/2)) + (sin(roll/2) * sin(pitch/2) * sin(yaw/2));
+
+            return std::make_tuple(x, y, z, w);
+        }
     }
 }

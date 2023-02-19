@@ -29,9 +29,8 @@ namespace geometry {
 
     bool StaticTransformTree::does_exist(const Transform& transform) {
         
-
         for (std::map<Frame, Transform>::iterator itr = child_frame_to_transform.begin(); itr != child_frame_to_transform.end(); itr++) {
-            if (itr->second == transform) {
+            if (itr->second.get_parent() == transform.get_parent() && itr->second.get_child() == transform.get_child()) {
                 return true;
             }
         }
@@ -166,7 +165,7 @@ namespace geometry {
     }
 
     std::vector<Transform> StaticTransformTree::all_transforms() {
-
+        
         std::vector<Transform> transforms = std::vector<Transform>();
         for (std::map<Frame, Transform>::iterator itr = child_frame_to_transform.begin(); itr != child_frame_to_transform.end(); itr++) {
             transforms.push_back(itr->second);
