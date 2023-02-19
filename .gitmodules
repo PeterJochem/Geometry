@@ -1,0 +1,3 @@
+[submodule "src/stl_parser"]
+	path = src/stl_parser
+	url = git@github.com:PeterJochem/stl_parser.git

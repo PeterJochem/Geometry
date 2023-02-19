@@ -9,9 +9,11 @@ find_package(Eigen3 3.3 REQUIRED) # NO_MODULE)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(${EIGEN3_INCLUDE_DIR})
+include_directories(src/stl_parser/)
 
 include_directories(/usr/include/ginac/)
 
+add_subdirectory(src/stl_parser/)
 
 add_library(geometry
   src/transform/transform.cpp 
@@ -26,6 +28,7 @@ add_library(geometry
   src/primitives/point.cpp
   src/meshes/mesh.cpp
   )
+
 
 target_include_directories(geometry PUBLIC ${EIGEN3_INCLUDE_DIR} ./include)
 target_link_libraries(geometry PUBLIC Eigen3::Eigen /usr/lib/libginac.so)

@@ -2,6 +2,7 @@
 #define MESH
 #include "transform/transform.hpp"
 #include "primitives/point.hpp"
+#include "parse_stl.h"
 #include <tuple>
 #include <vector>
 
