@@ -17,9 +17,6 @@ namespace geometry {
         // load the mesh from file
     }
 
-    Mesh::Mesh(Transform transform, std::vector<Point3D> vertices, std::vector<std::tuple<int, int, int>> triangles): transform(transform), vertices(vertices), triangles(triangles) {
-    }
-
     Transform Mesh::get_transform() {
         return transform;
     }
@@ -36,6 +33,22 @@ namespace geometry {
 
     std::string VisualMesh::get_file_name() {
         return file_name;
+    }
+
+    CollisionMesh::CollisionMesh() {
+
+    }
+
+    CollisionMesh::CollisionMesh(std::vector<Point3D> vertices, std::vector<std::tuple<int, int, int>> triangles): vertices(vertices), triangles(triangles) {
+
+    }
+
+    std::vector<Point3D> CollisionMesh::get_vertices() {
+        return vertices;
+    }
+
+    std::vector<std::tuple<int, int, int>> CollisionMesh::get_triangles() {
+        return triangles;
     }
 
 

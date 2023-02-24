@@ -44,7 +44,11 @@ namespace geometry {
 
     Transform StaticTransformTree::measure_transform(Frame parent, Frame child) {
         
-        if (!(does_exist(child) && does_exist(child))) {
+        if (!(does_exist(parent) && does_exist(child))) {
+            std::cout << parent << std::endl;
+            std::cout << child << std::endl;
+            std::cout << (does_exist(parent) == true) << std::endl;
+            std::cout << (does_exist(child) == true) << std::endl;
             throw std::runtime_error("A frame does not exist.");
         }
 

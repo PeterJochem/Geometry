@@ -9,7 +9,7 @@ find_package(Eigen3 3.3 REQUIRED) # NO_MODULE)
 find_package(GTest REQUIRED)
 include_directories(${GTEST_INCLUDE_DIRS})
 include_directories(${EIGEN3_INCLUDE_DIR})
-include_directories(src/stl_parser/)
+include_directories(/home/pj/ros_motion_planning/src/motion_planning_library/src/cpp/geometry/src/stl_parser/)
 
 include_directories(/usr/include/ginac/)
 
@@ -27,11 +27,12 @@ add_library(geometry
   src/conversions/conversions.cpp
   src/primitives/point.cpp
   src/meshes/mesh.cpp
+  src/meshes/stl_parser.cpp
   )
 
 
-target_include_directories(geometry PUBLIC ${EIGEN3_INCLUDE_DIR} ./include)
-target_link_libraries(geometry PUBLIC Eigen3::Eigen /usr/lib/libginac.so)
+target_include_directories(geometry PUBLIC ${EIGEN3_INCLUDE_DIR} ./include src/stl_parser/)
+target_link_libraries(geometry PUBLIC Eigen3::Eigen /usr/lib/libginac.so parse_stl)
 
 set(BUILD_TESTS True)
 if (BUILD_TESTS)

@@ -72,5 +72,14 @@ namespace geometry {
 
             return std::make_tuple(x, y, z, w);
         }
+
+    std::tuple<Point3D, Point3D, Point3D> to_points(stl::triangle triangle) {
+        return std::make_tuple(to_point(triangle.v1), to_point(triangle.v2), to_point(triangle.v3));
+    }
+    
+    Point3D to_point(stl::point point) {
+
+        return Point3D(point.x, point.y, point.z);
+    }
     }
 }

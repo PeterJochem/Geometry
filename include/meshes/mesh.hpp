@@ -12,17 +12,14 @@ class Mesh {
 
     public:
         Mesh();
+
+        // Get rid of thsee       
         Mesh(Transform transform);
         Mesh(Transform transform, std::string file_name);
         Mesh(Transform transform, std::vector<Point3D> vertices, std::vector<std::tuple<int, int, int>> triangles);
-
-        std::vector<Point3D> get_vertices();
-        std::vector<std::tuple<int, int, int>> get_triangles();
         Transform get_transform();
 
     protected:
-        std::vector<Point3D> vertices;
-        std::vector<std::tuple<int, int, int>> triangles;
         Transform transform;
 
     private:
@@ -33,6 +30,12 @@ class CollisionMesh: public Mesh {
 
     public:
         CollisionMesh();
+        CollisionMesh(std::vector<Point3D> vertices, std::vector<std::tuple<int, int, int>> triangles);
+        std::vector<Point3D> get_vertices();
+        std::vector<std::tuple<int, int, int>> get_triangles();
+    private:
+        std::vector<Point3D> vertices;
+        std::vector<std::tuple<int, int, int>> triangles;
 };
 
 class VisualMesh: public Mesh {
